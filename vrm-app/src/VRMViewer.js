@@ -43,7 +43,7 @@ function App() {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.update(); // 更新控制器，如果开启了damping或者autoRotate，必须在动画循环中调用
 
-    const mixer = new THREE.AnimationMixer(scene); // 创建一个动画混合器
+      const mixer = new THREE.AnimationMixer(scene); // 创建一个动画混合器
 
     // 使用GLTFLoader加载vrm模型
     const loader = new GLTFLoader();
@@ -94,12 +94,12 @@ function App() {
       // 缩放模型
       model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-      // 调整相机的位置
-      camera.position.copy(center); // 将相机的位置设置为包围盒的中心
-      camera.position.x += size.x / 2; // 将相机向x轴正方向移动
-      camera.position.y += size.y / 2; // 将相机向y轴正方向移动
-      camera.position.z += size.z * 2; // 将相机向z轴正方向移动
-      camera.lookAt(center); // 将相机的焦点设置为包围盒的中心
+     // 调整相机的位置
+     camera.position.set(0, 0, size.z * 2); // 将相机的位置设置为屏幕中心
+     camera.lookAt(new THREE.Vector3(0, 0, 0)); // 将相机的焦点设置为场景中心
+     // 调整模型的朝向
+     model.lookAt(new THREE.Vector3(0, 0, -9)); // 将模型的朝向设置为屏幕的方向
+     
     }
 
     // 当窗口大小改变时，调整渲染器和相机的设置
